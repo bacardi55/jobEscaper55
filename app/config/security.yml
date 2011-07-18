@@ -1,0 +1,15 @@
+security:
+    providers:
+        main:
+
+    firewalls:
+        main:
+            pattern: /.*
+            logout: true
+            security: true
+            anonymous: true
+
+    access_control:
+        - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
