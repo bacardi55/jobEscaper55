@@ -1,3 +1,6 @@
 vendor/
 app/cache
 app/logs
+*~
+*.swp
+.*.swp

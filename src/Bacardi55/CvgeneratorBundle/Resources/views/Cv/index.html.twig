@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+  <h1>Liste des CV</h1>
+  <ul>
+    {% for cv in cvs %}
+      <li>
+        <a href="{{ path('Bacardi55CvgeneratorBundle_cv', {'id': cv.id }) }}">
+          {{ cv }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
