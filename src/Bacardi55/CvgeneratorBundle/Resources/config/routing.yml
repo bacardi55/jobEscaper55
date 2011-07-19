@@ -1,3 +1,7 @@
 Bacardi55CvgeneratorBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: Bacardi55CvgeneratorBundle:Default:index }
+  pattern:  /cv
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Cv:index }
+
+Bacardi55CvgeneratorBundle_cv:
+  pattern: /cv/{id}
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Cv:see }

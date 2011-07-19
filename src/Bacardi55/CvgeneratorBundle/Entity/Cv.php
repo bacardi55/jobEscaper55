@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Bacardi55\CvgeneratorBundle\Repository\CvRepository")
  * @ORM\Table(name="Cv")
  */
 class Cv{
@@ -24,7 +24,7 @@ class Cv{
   protected $title;
 
   /**
-   * @ORM\Column(type="tinyint")
+   * @ORM\Column(type="boolean")
    */
   protected $isTitleDisplayed;
 
@@ -38,6 +38,9 @@ class Cv{
     $this->categories = new ArrayCollection();
   }
   
+  public function __toString(){
+    return $this->title;
+  }
 
     /**
      * Get id
@@ -70,26 +73,6 @@ class Cv{
     }
 
     /**
-     * Set isTitleDisplayed
-     *
-     * @param tinyint $isTitleDisplayed
-     */
-    public function setIsTitleDisplayed(\tinyint $isTitleDisplayed)
-    {
-        $this->isTitleDisplayed = $isTitleDisplayed;
-    }
-
-    /**
-     * Get isTitleDisplayed
-     *
-     * @return tinyint 
-     */
-    public function getIsTitleDisplayed()
-    {
-        return $this->isTitleDisplayed;
-    }
-
-    /**
      * Add categories
      *
      * @param Bacardi55\CvgeneratorBundle\Entity\Category $categories
@@ -107,5 +90,25 @@ class Cv{
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Set isTitleDisplayed
+     *
+     * @param boolean $isTitleDisplayed
+     */
+    public function setIsTitleDisplayed($isTitleDisplayed)
+    {
+        $this->isTitleDisplayed = $isTitleDisplayed;
+    }
+
+    /**
+     * Get isTitleDisplayed
+     *
+     * @return boolean 
+     */
+    public function getIsTitleDisplayed()
+    {
+        return $this->isTitleDisplayed;
     }
 }
