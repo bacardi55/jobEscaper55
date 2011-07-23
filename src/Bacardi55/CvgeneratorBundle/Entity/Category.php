@@ -49,6 +49,10 @@ class Category{
     $this->elements = new ArrayCollection();
     $this->childrenCategory = new ArrayCollection();
   }
+
+  public function __toString(){
+    return $this->title;
+  }
       
 
     /**

@@ -8,7 +8,14 @@
         <a href="{{ path('Bacardi55CvgeneratorBundle_cv', {'id': cv.id }) }}">
           {{ cv }}
         </a>
+        - 
+        <a href="{{ path('Bacardi55CvgeneratorBundle_delete', {'id': cv.id}) }}">X</a>
       </li>
+    {% else %}
+      No registered Cv
     {% endfor %}
   </ul>
+
+  <a href="{{ path('Bacardi55CvgeneratorBundle_create_cv') }}">Add a Cv</a>
+
 {% endblock %}

@@ -30,12 +30,12 @@ class Element{
   protected $title;
 
   /**
-   * @ORM\Column(type="date")
+   * @ORM\Column(type="date", nullable="true")
    */
   protected $startDate;
 
   /**
-   * @ORM\Column(type="date")
+   * @ORM\Column(type="date", nullable="true")
    */
   protected $endDate;
 
@@ -44,6 +44,9 @@ class Element{
    */
   protected $text;
 
+  public function __toString(){
+    return $this->text;
+  }
 
     /**
      * Get id
