@@ -1,0 +1,30 @@
+ajax to edit CV
+  → bug : parse error twig
+
+Link Cv to user
+  → create user entity
+    → link user to cv (one to many)
+  → Authentification
+    → trois rôles 
+      → anonymes 
+      → user 
+      → admin
+  → protéger les cv pour les user
+    → security on
+    → filter la page d'affichage des cv pour n'
+    afficher que les cv de l'utilisateur
+  → affichage mode visualisation / mode édition
+
+Re order (sub)category / (sub)element
+  → Add weight for category and element
+  → display element and category according to their weight
+  → Ajax drag & drop to re-order element and category
+
+add date picker for element
+
+test unitaire
+
+ajouter à l'utilisateur la possibilité d'uploader une photo
+
+possibilité de mettre des zones libres pour insérer ce qu'on veut
+(entre catégory)
