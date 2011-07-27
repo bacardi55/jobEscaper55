@@ -49,7 +49,7 @@ class CvController extends Controller{
         $em->persist($cv);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('Bacardi55CvgeneratorBundle_homepage'));
+        return $this->redirect($this->generateUrl('Bacardi55CvgeneratorBundle_cv', array('id' => $cv->getId())));
       }
     }
 

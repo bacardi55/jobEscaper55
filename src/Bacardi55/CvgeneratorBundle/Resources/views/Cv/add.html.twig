@@ -16,3 +16,28 @@
 <a href="{{ path('Bacardi55CvgeneratorBundle_homepage') }}">Return to Cv's list</a>
 
 {% endblock %}
+
+{#
+{% if cv is defined and cv.id is not null %}
+  <form action="{{ path('Bacardi55CvgeneratorBundle_edit_cv', {'id': cv.id}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+          
+    <input type="submit" />
+  </form>
+{% else %}
+  {% extends '::base.html.twig' %}
+
+  {% block body %}
+    <h1>{{ title }}</h1>
+
+    <form action="{{ path('Bacardi55CvgeneratorBundle_create_cv') }}" method="post" {{ form_enctype(form) }}>
+      {{ form_widget(form) }}
+            
+      <input type="submit" />
+    </form>
+
+    <a href="{{ path('Bacardi55CvgeneratorBundle_homepage') }}">Return to Cv's list</a>
+
+  {% endblock %}
+{% endif %}
+#}

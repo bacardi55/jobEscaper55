@@ -1,8 +1,3 @@
-{% extends '::base.html.twig' %}
-
-{% block body %}
-<h1>{{ title }}</h1>
-
 {% if element.id %}
   <form action="{{ path('Bacardi55CvgeneratorBundle_edit_element', {'id': cv_id, 'cat_id': element.category.id, 'element_id': element.id}) }}" method="post" {{ form_enctype(form) }}>
 {% else %}
@@ -12,9 +7,3 @@
           
   <input type="submit" />
 </form>
-
-<a href="{{ path('Bacardi55CvgeneratorBundle_homepage') }}">Return to Cv's list</a>
-
-{% endblock %}
-
-

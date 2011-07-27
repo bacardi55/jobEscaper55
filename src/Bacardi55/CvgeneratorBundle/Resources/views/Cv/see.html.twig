@@ -1,67 +1,99 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+  {{ parent() }}
+    
+  <link href="{{ asset('/bundles/bacardi55cvgenerator/css/see.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
 {% block body %}
+
   {% if cv.isTitleDisplayed == 1 %}
-    <h1 id="cv_title">{{ cv }}</h1>
+    <h1 id="cv_title">
+      {{ cv }}
+      <span class="admin">
+        <a href="{{ path('Bacardi55CvgeneratorBundle_edit_cv', { 'id': cv.id }) }}">
+          <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+        </a>
+      </span>
+    </h1>
+  {% else %}
+    {# TODO #}
   {% endif %}
-  <ul id="categories">
-    {% for cat in cv.categories %}
-      {% if cat.parentCategory.id is not defined %}
-        <li class="category">
-          {{ cat.title }} 
-          - 
-          <a href="{{ path('Bacardi55CvgeneratorBundle_del_category', {'id': cv.id, 'cat_id': cat.id}) }}">X</a>
-          -
-          <a href="{{ path('Bacardi55CvgeneratorBundle_edit_category', {'id': cv.id, 'cat_id': cat.id}) }}">E</a>
-          {% for sub_cat in cat.childrenCategories %}
-            <ul id="sub_category">
-              <li class="sub_category">
-                {{ sub_cat.title }}
-                - 
-                <a href="{{ path('Bacardi55CvgeneratorBundle_del_category', {'id': cv.id, 'cat_id': sub_cat.id}) }}">X</a>
-                -
-                <a href="{{ path('Bacardi55CvgeneratorBundle_edit_subcategory', {'id': cv.id, 'p_cat_id': cat.id, 'sub_cat_id': sub_cat.id}) }}">E</a>
-              </li>
-              <ul class="sub_element">
-                {% for sub_element in sub_cat.elements %}
-                  <li class="sub_element">
-                    {% if sub_element.title %}
-                      <span class="sub_element_left title">
-                        {{ sub_element.title }}
-                      </span>
-                    {% else %}
-                      <span class="sub_element_left date"
-                        <span class="sub_element_start">
-                          {{ sub_element.startDate.format('M Y') }}
-                        </span>
-                        -
-                        <span class="sub_element_end">
-                          {{ sub_element.endDate.format('M Y') }}
-                        </span>
-                      </span>
-                    {% endif %}
-                    {{ sub_element.text }} 
-                    - 
-                    <a href="{{ path('Bacardi55CvgeneratorBundle_del_element', {'id': cv.id, 'cat_id': sub_cat.id, 'element_id': sub_element.id }) }}">X</a>
-                    - 
-                    <a href="{{ path('Bacardi55CvgeneratorBundle_edit_element', {'id': cv.id, 'cat_id': sub_cat.id, 'element_id': sub_element.id }) }}">E</a>
-                  </li>
-                {% else %}
-                  <li>No element for this subcategory</li>
-                {% endfor %}
-                <li><a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': sub_cat.id}) }}">Add an element for this subcategory</a></li>
-              </ul>
-            </ul>
-          {% endfor %}
-          <ul id="elements">
-          {% for element in cat.elements %}
-            <li class="element" >
-              {% if element.title %}
-                <span class="element_left title">
-                  {{ element.title }}
+  {% for cat in cv.categories %}
+    {% if cat.parentCategory.id is not defined %}
+      <h1>{{ cat.title }}
+        <span class="admin">
+          <a class="delete" href="{{ path('Bacardi55CvgeneratorBundle_del_category', {'id': cv.id, 'cat_id': cat.id}) }}">
+            <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
+          </a>
+          <a href="{{ path('Bacardi55CvgeneratorBundle_edit_category', {'id': cv.id, 'cat_id': cat.id}) }}" class="edit add_category">
+            <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+          </a>
+        </div>
+      </h1>
+      {% for sub_cat in cat.childrenCategories %}
+        <h2>{{ sub_cat.title }}
+        <span class="admin">
+          <a class="delete" href="{{ path('Bacardi55CvgeneratorBundle_del_category', {'id': cv.id, 'cat_id': sub_cat.id}) }}">
+            <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
+          </a>
+          <a href="{{ path('Bacardi55CvgeneratorBundle_edit_subcategory', {'id': cv.id, 'p_cat_id': cat.id, 'sub_cat_id': sub_cat.id}) }}" class="add_category edit">
+            <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+          </a>
+        </div>
+        </h2>
+        <ul class="sub_elements">
+          {% for sub_element in sub_cat.elements %}
+            <li class="sub_element">
+              {% if sub_element.title %}
+                <span class="sub_element_left title">
+                  {{ sub_element.title }}
                 </span>
               {% else %}
-                <span class="element_left date"
+                <span class="sub_element_left date">
+                  {% if sub_element.endDate is not null %}
+                    <span class="sub_element_start">
+                      {{ sub_element.startDate.format('M Y') }}
+                    </span>
+                    -
+                    <span class="sub_element_end">
+                      {{ sub_element.endDate.format('M Y') }}
+                    </span>
+                  {% else %}
+                    <span class="sub_element_date">
+                      Since {{ sub_element.startDate.format('M Y') }}
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
+              {{ sub_element.text | raw }}
+              <span class="admin">
+                <a href="{{ path('Bacardi55CvgeneratorBundle_del_element', {'id': cv.id, 'cat_id': sub_cat.id, 'element_id': sub_element.id }) }}" class="delete">
+                  <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
+                </a>
+                <a href="{{ path('Bacardi55CvgeneratorBundle_edit_element', {'id': cv.id, 'cat_id': sub_cat.id, 'element_id': sub_element.id }) }}" class="edit add_line">
+                  <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+                </a>
+              </div>
+            </li>
+          {% endfor %}
+          <li class="sub_element">
+            <a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': sub_cat.id}) }}" class="add_line">
+              + Add a line
+            </a>
+          </li>
+        </ul>
+      {% endfor %}
+      <ul class="elements">
+        {% for element in cat.elements %}
+          <li class="element" >
+            {% if element.title %}
+              <span class="element_left title">
+                {{ element.title }}
+              </span>
+            {% else %}
+              <span class="element_left date">
+                {% if element.endDate is not null %}
                   <span class="element_start">
                     {{ element.startDate.format('M Y') }}
                   </span>
@@ -69,31 +101,49 @@
                   <span class="element_end">
                     {{ element.endDate.format('M Y') }}
                   </span>
-                </span>
-              {% endif %}
-              <span class="element_right">{{ element.text }}</span>
-              - 
-              <a href="{{ path('Bacardi55CvgeneratorBundle_del_element', {'id': cv.id, 'cat_id': cat.id, 'element_id': element.id}) }}">X</a>
-              - 
-              <a href="{{ path('Bacardi55CvgeneratorBundle_edit_element', {'id': cv.id, 'cat_id': cat.id, 'element_id': element.id}) }}">E</a>
-            </li>
-          {% else %}
-            No element in this category yet
-          {% endfor %}
-          <br/>
-          <a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': cat.id}) }}">Add an element for this category</a>
-          <br/>
-          <a href="{{ path('Bacardi55CvgeneratorBundle_add_subcategory', {'id': cv.id, 'p_cat_id': cat.id}) }}">Add a sub category for this category</a>
-          </ul>
-        </li>
-      {% endif %}
-    {% else %}
-      No Category yet
-    {% endfor %}
-  </ul>
+                {% else %}
+                  <span class="element_date">
+                    Since {{ element.startDate.format('M Y') }}
+                  </span>
+                {% endif %}
+              </span>
+            {% endif %}
+            <span class="element_right">{{ element.text }}</span>
+            <span class="admin">
+              <a href="{{ path('Bacardi55CvgeneratorBundle_del_element', {'id': cv.id, 'cat_id': cat.id, 'element_id': element.id}) }}" class="delete">
+                <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
+              </a>
+              <a href="{{ path('Bacardi55CvgeneratorBundle_edit_element', {'id': cv.id, 'cat_id': cat.id, 'element_id': element.id}) }}" class="edit add_line">
+                <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+              </a>
+            </div>
+          </li>
+        {% endfor %}
+        <br/>
+        <a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': cat.id}) }}" class="add_line">+ Add a line</a>
+        <br/>
+        <a href="{{ path('Bacardi55CvgeneratorBundle_add_subcategory', {'id': cv.id, 'p_cat_id': cat.id}) }}" class="add_category">+ Add a sub category</a>
+      </ul>
+    {% endif %}
+  {% else %}
+    No Category yet
+  {% endfor %}
 
-  <a href="{{ path('Bacardi55CvgeneratorBundle_edit_cv', { 'id': cv.id }) }}">Edit this Cv</a><br />
-  <a href="{{ path('Bacardi55CvgeneratorBundle_add_category', { 'id': cv.id }) }}">Add a category at this CV</a><br />
-  <a href="{{ path('Bacardi55CvgeneratorBundle_delete', { 'id': cv.id }) }}">Delete this CV</a><br />
-  <a href="{{ path('Bacardi55CvgeneratorBundle_homepage') }}">Return to Cv's list</a><br />
+  <div class="admin">
+    <a href="{{ path('Bacardi55CvgeneratorBundle_add_category', { 'id': cv.id }) }}" class="add_category">+ Add a category</a><br />
+    <a href="{{ path('Bacardi55CvgeneratorBundle_delete', { 'id': cv.id }) }}">
+      <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
+      Delete this CV
+    </a><br />
+    <a href="{{ path('Bacardi55CvgeneratorBundle_homepage') }}">All Cv</a><br />
+  </div>
+
+<div id="ajax_add"></div>
+
+  {% block javascripts %}
+    <script src="{{ asset('bundles/bacardi55cvgenerator/js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/bacardi55cvgenerator/js/jquery-ui.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/bacardi55cvgenerator/js/cvgenerator.js') }}" type="text/javascript"></script>
+  {% endblock %}
+
 {% endblock %}
