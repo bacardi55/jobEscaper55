@@ -14,6 +14,8 @@ Link Cv to user
     → filter la page d'affichage des cv pour n'
     afficher que les cv de l'utilisateur
   → affichage mode visualisation / mode édition
+  → Possibilité de faire un cv anonyme (masquer les informations
+    de l'utilisateur)
 
 Re order (sub)category / (sub)element
   → Add weight for category and element
@@ -23,6 +25,10 @@ Re order (sub)category / (sub)element
 add date picker for element
 
 test unitaire
+
+export pdf
+
+esport doc / odt
 
 ajouter à l'utilisateur la possibilité d'uploader une photo
 
