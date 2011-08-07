@@ -38,6 +38,7 @@ ul.elements, ul.sub_elements {
 
 li.element, li.sub_element {
   list-style-type:none;
+  clear:both;
 }
 
 span.element_left{
@@ -54,6 +55,15 @@ span.sub_element_left {
   text-transform: capitalize;
 }
 
+span.sub_element_text {
+  float: left;
+}
+
+span.sub_element_text p {
+  margin:0;
+  padding:0;
+}
+
 ul.elements {
   margin-left:30px;
   padding-left:0px;
@@ -64,8 +74,8 @@ ul.sub_elements {
 }
 
 textarea{
-  width:300px;
-  height:100px;
+  width:500px;
+  height:200px;
 }
 
 .ui-dialog {

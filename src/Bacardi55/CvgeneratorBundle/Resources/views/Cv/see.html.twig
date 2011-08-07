@@ -66,7 +66,9 @@
                   {% endif %}
                 </span>
               {% endif %}
-              {{ sub_element.text | raw }}
+              <span class="sub_element_text">
+                {{ sub_element.text | raw }}
+              </span>
               <span class="admin">
                 <a href="{{ path('Bacardi55CvgeneratorBundle_del_element', {'id': cv.id, 'cat_id': sub_cat.id, 'element_id': sub_element.id }) }}" class="delete">
                   <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
@@ -140,10 +142,34 @@
 
 <div id="ajax_add"></div>
 
-  {% block javascripts %}
-    <script src="{{ asset('bundles/bacardi55cvgenerator/js/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('bundles/bacardi55cvgenerator/js/jquery-ui.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('bundles/bacardi55cvgenerator/js/cvgenerator.js') }}" type="text/javascript"></script>
-  {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ asset('bundles/bacardi55cvgenerator/js/jquery/jquery.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('bundles/bacardi55cvgenerator/js/jquery/jquery-ui.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('bundles/bacardi55cvgenerator/js/cvgenerator.js') }}" type="text/javascript"></script>
+
+  <script type="text/javascript" src="{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/tiny_mce.js') }}"></script>
+  <script type="text/javascript">
+    tinyMCE.init({
+      // General options
+      mode : "textareas",
+      theme : "simple",
+      plugins : "",
+
+      // Theme options
+      theme_advanced_buttons1 : "bold,italic,underline,strikethrough",
+      theme_advanced_toolbar_location : "top",
+      theme_advanced_toolbar_align : "center",
+      theme_advanced_statusbar_location : "top",
+      theme_advanced_resizing : true,
+
+      // Drop lists for link/image/media/template dialogs
+      template_external_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/template_list.js') }}", 
+      external_link_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/link_list.js') }}",
+      external_image_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/image_list.js') }}",
+      media_external_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/media_list.js') }}",
+  });
+  </script>
 
 {% endblock %}
