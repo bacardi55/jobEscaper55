@@ -1,6 +1,7 @@
 _index:
   pattern: /
-  defaults: { _controller: Bacardi55CvgeneratorBundle:Default:index }
+#  defaults: { _controller: Bacardi55CvgeneratorBundle:Default:index }
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Cv:index }
 
 Bacardi55CvgeneratorBundle:
   resource: "@Bacardi55CvgeneratorBundle/Resources/config/routing.yml"

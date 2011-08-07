@@ -8,6 +8,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+            // Bundle Symfony
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -18,7 +19,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new Bacardi55\CvgeneratorBundle\Bacardi55CvgeneratorBundle(),
+            // Bundle Bacardi55
+            new Bacardi55\CvgeneratorBundle\Bacardi55CvgeneratorBundle(), // cv_generator
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
