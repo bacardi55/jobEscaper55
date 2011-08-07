@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-  <h1>Liste des CV</h1>
+  <h1>{%trans %}cv.list {% endtrans %}</h1>
   <ul>
     {% for cv in cvs %}
       <li>
@@ -16,6 +16,8 @@
     {% endfor %}
   </ul>
 
-  <a href="{{ path('Bacardi55CvgeneratorBundle_create_cv') }}">Add a Cv</a>
+  <a href="{{ path('Bacardi55CvgeneratorBundle_create_cv') }}">
+    {% trans %}cv.new{% endtrans %}
+  </a>
 
 {% endblock %}

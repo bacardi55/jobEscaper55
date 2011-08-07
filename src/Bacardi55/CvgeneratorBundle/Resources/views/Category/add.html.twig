@@ -1,15 +1,35 @@
+<h2>{{ title }}</h2>
+
 {% if category.parentCategory %}
   {% if category.id %}
-    <form action="{{ path('Bacardi55CvgeneratorBundle_edit_subcategory', {'id': cv_id, 'p_cat_id': category.parentCategory.id, 'sub_cat_id': category.id }) }}" method="post" {{form_enctype(form) }}
+    
+    <form action="{{ path('Bacardi55CvgeneratorBundle_edit_subcategory', 
+                    {'id': cv_id, 'p_cat_id': category.parentCategory.id,
+                      'sub_cat_id': category.id }) }}" 
+          method="post" {{form_enctype(form) }}
+  
   {% else %}
-    <form action="{{ path('Bacardi55CvgeneratorBundle_add_subcategory', {'id': cv_id, 'p_cat_id': category.parentCategory.id }) }}" method="post" {{form_enctype(form) }}
+    
+    <form action="{{ path('Bacardi55CvgeneratorBundle_add_subcategory', 
+                      {'id': cv_id, 'p_cat_id': category.parentCategory.id }) }}" 
+          method="post" {{form_enctype(form) }}
+  
   {% endif %}
 {% elseif category.id %}
-  <form action="{{ path('Bacardi55CvgeneratorBundle_edit_category', {'id': cv_id, 'cat_id': category.id}) }}" method="post" {{ form_enctype(form) }}>
+
+  <form action="{{ path('Bacardi55CvgeneratorBundle_edit_category', 
+                    {'id': cv_id, 'cat_id': category.id}) }}" 
+        method="post" {{ form_enctype(form) }}>
+
 {% else %}
-  <form action="{{ path('Bacardi55CvgeneratorBundle_add_category', {'id': cv_id}) }}" method="post" {{ form_enctype(form) }}>
+
+  <form action="{{ path('Bacardi55CvgeneratorBundle_add_category',
+                    {'id': cv_id}) }}" 
+        method="post" {{ form_enctype(form) }}>
+
 {% endif %}
+
   {{ form_widget(form) }}
           
-  <input type="submit" />
+  <input type="submit" value="{% trans %}submit{% endtrans %}"/>
 </form>

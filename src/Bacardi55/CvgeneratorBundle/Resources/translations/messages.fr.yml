@@ -1,0 +1,34 @@
+cv:
+  titre: "Titre du Cv : "
+  afficher: "Afficher le titre en haut du CV ?"
+  list: Liste des Cv
+  new: Créer un CV
+  edit: Éditer votre CV
+  add:
+    'entry %catTitle%': Ajouter une entrée à %catTitle%
+  edit:
+    'entry %catTitle%': Editer l'entrée de %catTitle%
+  delete: Supprimer ce Cv
+
+category:
+  new: Créer une catégorie
+  edit: Editer la catégorie
+  title: "Titre de la catégorie : "
+  'add %cvTitle%': Ajouter une catégorie au cv «%cvTitle%»
+  sub:
+    'add %catParentTitle%': Ajouter une sous catégorie à «%catParentTitle%»
+    new: Ajouter une sous catégorie
+
+submit: Envoyer
+cancel: Annuler
+
+go:
+  cv:
+    list: Retourner à la liste des Cv
+
+element:
+  title: Titre de l'élément
+  endDate: Date de fin
+  startDate: Date de début
+  text: Contenu
+  new: Ajouter un élément

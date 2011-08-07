@@ -25,7 +25,13 @@ class ElementController extends Controller{
       if(!$cv || !$category)
         return $this->redirect('Bacardi55CvgeneratorBundle_homepage');
 
-      $title = 'Add an entry to the cv «'. $cv->getTitle() .'», in the category «'. $category->getTitle() .'»';
+      if($element->getId()){
+        $title = $this->get('translator')->trans('cv.edit.entry %catTitle%', array('%catTitle%' => $category->getTitle()));
+      }
+      else{
+        $title = $this->get('translator')->trans('cv.add.entry %catTitle%', array('%catTitle%' => $category->getTitle()));
+      
+      }
 
       $element->setCategory($category);
     }

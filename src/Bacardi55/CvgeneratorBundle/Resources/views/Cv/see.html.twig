@@ -81,7 +81,7 @@
           {% endfor %}
           <li class="sub_element">
             <a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': sub_cat.id}) }}" class="add_line">
-              + Add a line
+              + {% trans %}element.new{% endtrans %}
             </a>
           </li>
         </ul>
@@ -122,9 +122,13 @@
           </li>
         {% endfor %}
         <br/>
-        <a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': cat.id}) }}" class="add_line">+ Add a line</a>
+        <a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': cat.id}) }}" class="add_line">
+          + {% trans %}element.new{% endtrans %}
+        </a>
         <br/>
-        <a href="{{ path('Bacardi55CvgeneratorBundle_add_subcategory', {'id': cv.id, 'p_cat_id': cat.id}) }}" class="add_category">+ Add a sub category</a>
+        <a href="{{ path('Bacardi55CvgeneratorBundle_add_subcategory', {'id': cv.id, 'p_cat_id': cat.id}) }}" class="add_category">
+          + {% trans %}category.sub.new{% endtrans %}
+        </a>
       </ul>
     {% endif %}
   {% else %}
@@ -132,12 +136,14 @@
   {% endfor %}
 
   <div class="admin">
-    <a href="{{ path('Bacardi55CvgeneratorBundle_add_category', { 'id': cv.id }) }}" class="add_category">+ Add a category</a><br />
+    <a href="{{ path('Bacardi55CvgeneratorBundle_add_category', { 'id': cv.id }) }}" class="add_category">
+      + {% trans %}category.new{% endtrans %}
+    </a><br />
     <a href="{{ path('Bacardi55CvgeneratorBundle_delete', { 'id': cv.id }) }}">
       <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
-      Delete this CV
+      {% trans %}cv.delete{% endtrans %}
     </a><br />
-    <a href="{{ path('Bacardi55CvgeneratorBundle_homepage') }}">All Cv</a><br />
+    <a href="{{ path('Bacardi55CvgeneratorBundle_homepage') }}">{% trans %}cv.list{% endtrans %}</a><br />
   </div>
 
 <div id="ajax_add"></div>

@@ -33,10 +33,10 @@ class CvController extends Controller{
 
     if($id){
       $cv = $em->getRepository('Bacardi55CvgeneratorBundle:Cv')->find($id);
-      $title = 'Edit your Cv';
+      $title = $this->get('translator')->trans('cv.edit');
     }
     else{
-      $title = 'create a Cv';
+      $title = $this->get('translator')->trans('cv.new');
     }
 
     $form = $this->createForm(new CvForm(), $cv);

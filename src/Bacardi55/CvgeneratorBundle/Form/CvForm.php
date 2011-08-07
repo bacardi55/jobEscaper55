@@ -8,8 +8,8 @@ use Symfony\Component\Form\FormBuilder;
 class CvForm extends AbstractType{
 
   public function buildForm(FormBuilder $builder, array $options){
-    $builder->add('title', 'text', array('label' => 'Titre du Cv : '));
-    $builder->add('isTitleDisplayed', 'checkbox', array('required' => false, 'label' => 'Afficher le titre sur le CV ?'));
+    $builder->add('title', 'text', array('label' => 'cv.titre'));
+    $builder->add('isTitleDisplayed', 'checkbox', array('required' => false, 'label' => 'cv.afficher'));
   }
 
   public function getName(){

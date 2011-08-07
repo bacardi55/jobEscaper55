@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilder;
 class CategoryForm extends AbstractType{
 
   public function buildForm(FormBuilder $builder, array $options){ 
-    $builder->add('title', 'text', array('label' => 'Title : '));
+    $builder->add('title', 'text', array('label' => 'category.title'));
   }
 
   public function getName(){

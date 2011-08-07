@@ -26,11 +26,13 @@ class CategoryController extends Controller{
     else{
       $cv = $em->getRepository('Bacardi55CvgeneratorBundle:Cv')->find($id);
       $category->setCv($cv);
-      
-      $title = $category->getId()? 
-        'Edit Category'
-        :
-        'Add a category to the cv «'. $cv->getTitle() .'»';
+
+      if($category->getId()){
+        $title = $this->get('translator')->trans('category.edit');
+      }
+      else{
+        $title = $this->get('translator')->trans('category.add %cvTitle%', array('%cvTitle%' => $cv->getTitle()));
+      }
     }
 
     $form = $this->createForm(new CategoryForm(), $category);
@@ -97,10 +99,13 @@ class CategoryController extends Controller{
       if(!$parent_cat || !$cv)
         return $this->redirect($this->generateUrl('Bacardi55CvgeneratorBundle_cv', array('id' => $id)));
 
-      $title = $sub_cat->getId()?
-        'Edit subcategory'
-        :
-        'Add a subcategory to the category «'. $parent_cat->getTitle() .'» for the cv «'. $cv->getTitle() .'»';
+      if($sub_cat->getId()){
+        $title = $this->get('translator')->trans('category.sub.edit');
+      }
+      else{
+        $title = $this->get('translator')->trans('category.sub.add %catParentTitle%', array('%catParentTitle%' => $parent_cat->getTitle()));
+      }
+      
       $sub_cat->setParentCategory($parent_cat);
       $sub_cat->setCv($cv);
     }
@@ -128,10 +133,6 @@ class CategoryController extends Controller{
 
 
     
-  }
-
-  public function delSubCatAction($id, $p_cat_id, $sub_cat_id){
-  
   }
 
 }

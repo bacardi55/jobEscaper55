@@ -13,15 +13,15 @@ class ElementForm extends AbstractType{
     for($i = 0; $i < 40; $i++)
       $years[] = date('Y') - $i;
 
-    $builder->add('title', 'text', array('label' => 'Titre de l\'élément : ', 'required' => false));
+    $builder->add('title', 'text', array('label' => 'element.title', 'required' => false));
     $builder->add('startDate', 'date', 
-      array('label' => 'Date de début : ', 
+      array('label' => 'element.startDate', 
             'required' => false, 
             'years' => $years, 
             'pattern' => $date_pattern
       ));
-    $builder->add('endDate', 'date', array('label' => 'Date de fin : ', 'required' => false, 'years' => $years));
-    $builder->add('text', 'textarea', array('label' => 'Texte : '));
+    $builder->add('endDate', 'date', array('label' => 'element.endDate', 'required' => false, 'years' => $years));
+    $builder->add('text', 'textarea', array('label' => 'element.text'));
   }
 
   public function getName(){

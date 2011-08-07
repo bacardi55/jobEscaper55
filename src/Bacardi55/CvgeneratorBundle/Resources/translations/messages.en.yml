@@ -1,0 +1,34 @@
+cv:
+  titre: "Resume title: "
+  afficher: "Display this title on top of your resume? "
+  list: List of resume
+  new: Create a resume
+  edit: Edit your resume
+  add:
+    'entry %catTitle%': Add an entry to %catTitle%
+  edit:
+    'entry %catTitle%': Edit entry of %catTitle%
+  delete: Delete this Resume
+
+category:
+  new: Create a category
+  edit: Edit category
+  title: "Title of the category: "
+  'add %cvTitle%': Add category to the resume «%cvTitle%»
+  sub:
+    'add %catParentTitle%': Add a sub category to «%catParentTitle%»
+    new: Add a sub category
+
+submit: Send
+cancel: Cancel
+
+go:
+  cv:
+    list: Return to the list of resume
+
+element:
+  title: Element title
+  endDate: End date
+  startDate: Start Date
+  text: Content
+  new: Add a line
