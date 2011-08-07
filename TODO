@@ -1,5 +1,4 @@
-ajax to edit CV
-  → bug : parse error twig
+add date picker for element
 
 Link Cv to user
   → create user entity
@@ -22,7 +21,8 @@ Re order (sub)category / (sub)element
   → display element and category according to their weight
   → Ajax drag & drop to re-order element and category
 
-add date picker for element
+
+multilingue
 
 test unitaire
 
