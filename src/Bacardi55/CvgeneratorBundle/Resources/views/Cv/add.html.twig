@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+<h1>{{ title }}</h1>
+
+{% if cv.id %}
+
+  <form action="{{ path('Bacardi55CvgeneratorBundle_edit_cv', {'id': cv.id}) }}" 
+        method="post" {{ form_enctype(form) }}>
+
+{% else %}
+  
+  <form action="{{ path('Bacardi55CvgeneratorBundle_create_cv') }}" 
+        method="post" {{ form_enctype(form) }}>
+
+{% endif %}
+
+  {{ form_widget(form) }}
+          
+  <input type="submit" value="{% trans %}submit{% endtrans %}" />
+
+</form>
+
+<a href="{{ path('Bacardi55CvgeneratorBundle_homepage') }}">
+{% trans %}go.cv.list{% endtrans %}
+</a>
+
+{% endblock %}

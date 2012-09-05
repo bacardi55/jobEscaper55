@@ -1,0 +1,60 @@
+###### CV ######
+Bacardi55CvgeneratorBundle_homepage:
+  pattern:  /cv
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Cv:index }
+
+Bacardi55CvgeneratorBundle_create_cv:
+  pattern: /cv/add
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Cv:add }
+
+Bacardi55CvgeneratorBundle_edit_cv:
+  pattern: /cv/edit/{id}
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Cv:add }
+
+Bacardi55CvgeneratorBundle_cv:
+  pattern: /cv/{id}
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Cv:see }
+
+Bacardi55CvgeneratorBundle_delete:
+  pattern: /cv/delete/{id}
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Cv:delete }
+
+###### Category ######
+Bacardi55CvgeneratorBundle_add_category:
+  pattern: /cv/{id}/category/add/
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Category:add }
+
+Bacardi55CvgeneratorBundle_edit_category:
+  pattern: /cv/{id}/category/edit/{cat_id}
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Category:add }
+
+Bacardi55CvgeneratorBundle_del_category:
+  pattern: /cv/{id}/category/delete/{cat_id}
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Category:delete }
+
+###### Sub Category ######
+Bacardi55CvgeneratorBundle_add_subcategory:
+  pattern: /cv/{id}/p_category/{p_cat_id}/subcategory/add
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Category:addSubCat }
+
+Bacardi55CvgeneratorBundle_edit_subcategory:
+  pattern: /cv/{id}/p_category/{p_cat_id}/subcategory/{sub_cat_id}
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Category:addSubCat }
+
+Bacardi55CvgeneratorBundle_del_subcategory:
+  pattern: /cv/{id}/p_category/{p_cat_id}/subcategory/delete/{sub_cat_id}
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Category:delSubCat }
+
+
+###### Element ######
+Bacardi55CvgeneratorBundle_add_element:
+  pattern: /cv/{id}/category/{cat_id}/element/add
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Element:add }
+
+Bacardi55CvgeneratorBundle_del_element:
+  pattern: /cv/{id}/category/{cat_id}/element/{element_id}
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Element:delete }
+
+Bacardi55CvgeneratorBundle_edit_element:
+  pattern: /cv/{id}/category/{cat_id}/element/edit/{element_id}
+  defaults: { _controller: Bacardi55CvgeneratorBundle:Element:add }

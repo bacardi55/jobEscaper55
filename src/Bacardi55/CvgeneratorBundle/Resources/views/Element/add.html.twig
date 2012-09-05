@@ -1,0 +1,51 @@
+<h2>{{ title }}</h2>
+
+{% if element.id %}
+
+  <form id="element_add" novalidate="novalidate" 
+        action="{{ path('Bacardi55CvgeneratorBundle_edit_element', 
+                    {'id': cv_id, 'cat_id': element.category.id, 
+                     'element_id': element.id}) }}" 
+        method="post" {{ form_enctype(form) }}>
+
+{% else %}
+
+  <form id="element_add" novalidate="novalidate" 
+        action="{{ path('Bacardi55CvgeneratorBundle_add_element', 
+                    {'id': cv_id, 'cat_id': element.category.id }) }}" 
+        method="post" {{ form_enctype(form) }}>
+
+{% endif %}
+
+  {{ form_errors(form) }}
+  
+  <div id="add_element_title">
+    {{ form_label(form.title) }}
+    {{ form_errors(form.title) }}
+    {{ form_widget(form.title) }}
+  </div>
+  
+  <div id="add_element_startDate">
+    {{ form_label(form.startDate) }}
+    {{ form_errors(form.startDate) }}
+    {{ form_widget(form.startDate) }}
+  </div>
+  
+  <div id="add_element_endDate">
+    {{ form_label(form.endDate) }}
+    {{ form_errors(form.endDate) }}
+    {{ form_widget(form.endDate) }}
+  </div>
+  
+  <div id="add_element_text">
+    {{ form_label(form.text) }}
+    {{ form_errors(form.text) }}
+    {{ form_widget(form.text, {'attr': {'class': 'textarea tinymce'}}) }}
+  </div>
+
+  {{ form_rest(form) }}
+
+  {{ form_widget(form) }}
+          
+  <input id="add_element_submit" type="submit" value="{% trans %}submit{% endtrans %}" />
+</form>

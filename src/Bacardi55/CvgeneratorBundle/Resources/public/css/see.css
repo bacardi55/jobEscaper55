@@ -1,0 +1,116 @@
+body {
+  width:800px;
+  margin:auto;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a.delete, a.delete:visited {
+  color: red;
+}
+
+a.edit, a.edit:visited {
+  color: green;
+}
+
+#cv_title{
+  font-size: 30px;
+  border: none;
+  text-align: center;
+}
+
+h1{
+  font-size: 25px;
+  border-bottom: 2px solid black;
+}
+
+h2{
+  font-size: 20px;
+  margin-left: 30px;
+}
+
+ul.elements, ul.sub_elements {
+  list-style-type:none;
+}
+
+li.element, li.sub_element {
+  list-style-type:none;
+  clear:both;
+}
+
+span.element_left{
+  width: 200px;
+  float: left;
+  font-weight: bold;
+  text-transform:capitalize;
+}
+
+span.sub_element_left {
+  width: 155px;
+  float:left;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+span.sub_element_text {
+  float: left;
+}
+
+span.sub_element_text p {
+  margin:0;
+  padding:0;
+}
+
+ul.elements {
+  margin-left:30px;
+  padding-left:0px;
+}
+
+ul.sub_elements {
+  margin-left: 35px;
+}
+
+textarea{
+  width:500px;
+  height:200px;
+}
+
+.ui-dialog {
+  background-color: white;
+  overflow: hidden;
+  padding: 15px;
+}
+
+.ui-widget-overlay{
+  opacity: 0.5;
+  background: url("../images/overlay.png") repeat-x scroll 50% 50% #AAAAAA;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.ui-dialog-titlebar{
+  border-bottom: 1px solid black;
+  margin-bottom: 5px;
+}
+
+.ui-dialog-title{
+  font-weight: bold;
+  padding: 5px;
+}
+
+.ui-icon-closethick{
+  float: right;
+}
+
+span.element_left.date > span.element_start{
+}
+
+span.element_left.date > span.element_end{
+}
+
+span.element_droite{
+}

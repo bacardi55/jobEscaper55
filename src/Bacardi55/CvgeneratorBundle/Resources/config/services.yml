@@ -1,0 +1,7 @@
+parameters:
+#    bacardi55_cvgenerator.example.class: Bacardi55\CvgeneratorBundle\Example
+
+services:
+#    bacardi55_cvgenerator.example:
+#        class: %bacardi55_cvgenerator.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
