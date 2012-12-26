@@ -30,6 +30,7 @@ class Cv{
 
   /**
   * @ORM\OneToMany(targetEntity="Category", mappedBy="cv")
+  * @ORM\OrderBy({"weight" = "ASC"})
   */
   private $categories;
   

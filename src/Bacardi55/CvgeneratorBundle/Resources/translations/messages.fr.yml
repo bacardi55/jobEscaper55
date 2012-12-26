@@ -1,4 +1,5 @@
 cv:
+  no_cv: "Aucun CV"
   titre: "Titre du Cv : "
   afficher: "Afficher le titre en haut du CV ?"
   list: Liste des Cv

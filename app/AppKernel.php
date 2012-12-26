@@ -18,8 +18,12 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
+            new FOS\UserBundle\FOSUserBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+
             // Homemade by bacardi55
-            new Bacardi55\CvgeneratorBundle\Bacardi55CvgeneratorBundle(),  // cv_generator
+            new Bacardi55\CvgeneratorBundle\Bacardi55CvgeneratorBundle(),  // cv_generator,
+            new Bacardi55\UserBundle\Bacardi55UserBundle(),                // User bundle
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

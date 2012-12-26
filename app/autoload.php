@@ -15,6 +15,10 @@ $loader->registerNamespaces(array(
     'Assetic'          => __DIR__.'/../vendor/assetic/src',
     'Metadata'         => __DIR__.'/../vendor/metadata/src',
 
+    'FOS'              => __DIR__.'/../vendor/bundles',
+    'Knp'              => __DIR__.'/../vendor/bundles',
+    'Knp\\Snappy'      => __DIR__.'/../vendor/snappy/src',
+
     'Bacardi55'        => __DIR__.'/../src',
 ));
 $loader->registerPrefixes(array(
@@ -41,3 +45,4 @@ AnnotationRegistry::registerLoader(function($class) use ($loader) {
 AnnotationRegistry::registerFile(__DIR__.'/../vendor/doctrine/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
 
 require __DIR__.'/../vendor/swiftmailer/lib/swift_required.php';
+require_once __DIR__.'/../vendor/tcpdf/tcpdf.php';

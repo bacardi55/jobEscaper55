@@ -1,181 +1,247 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}
+  {{ cv }}
+{% endblock %}
+
 {% block stylesheets %}
   {{ parent() }}
-    
+  {% if (is_admin == true) and ((pdf is not defined) or (pdf != true)) %}
+    <link href="{{ asset('/bundles/bacardi55cvgenerator/css/admin.css') }}" type="text/css" rel="stylesheet" />
+  {% endif %}
   <link href="{{ asset('/bundles/bacardi55cvgenerator/css/see.css') }}" type="text/css" rel="stylesheet" />
 {% endblock %}
 {% block body %}
 
-  {% if cv.isTitleDisplayed == 1 %}
-    <h1 id="cv_title">
-      {{ cv }}
-      <span class="admin">
-        <a href="{{ path('Bacardi55CvgeneratorBundle_edit_cv', { 'id': cv.id }) }}">
-          <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+  {% if (pdf is not defined) or (pdf != true) %}
+    <div id = "header">
+      <div class="navigation">
+        <a href="{{ path('Bacardi55CvgeneratorBundle_homepage') }}">
+          {% trans %} cv.list {% endtrans %}
         </a>
-      </span>
-    </h1>
-  {% else %}
-    {# TODO #}
+      </div>
+      {% if is_owner == true or 1 == 1%} {# TODO #}
+        <div id="admin">
+          <div id="adminToggle">
+            <span class="adminOn">
+              {% trans %}category.admin.on{% endtrans %}
+            </span>
+            <span class="adminOff">
+              {% trans %}category.admin.off{% endtrans %}
+            </span>
+          </div>
+          <div id="admin_items">
+            <span class="admin_item reorderCategories">{% trans %}category.reorder{% endtrans %}</span>
+            -
+            <span class="admin_item">
+              <a href="{{ path('Bacardi55CvgeneratorBundle_add_category', { 'id': cv.id }) }}" class="add_category">
+                + {% trans %}category.new{% endtrans %}
+              </a>
+            </span>
+            -
+            <span class="admin_item">
+              <a href="{{ path('Bacardi55CvgeneratorBundle_delete', { 'id': cv.id }) }}">
+                <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
+                {% trans %}cv.delete{% endtrans %}
+              </a>
+            <span>
+          </div>
+        </div>
+      {% endif %}
+    </div>
   {% endif %}
-  {% for cat in cv.categories %}
-    {% if cat.parentCategory.id is not defined %}
-      <h1>{{ cat.title }}
-        <span class="admin">
-          <a class="delete" href="{{ path('Bacardi55CvgeneratorBundle_del_category', {'id': cv.id, 'cat_id': cat.id}) }}">
-            <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
-          </a>
-          <a href="{{ path('Bacardi55CvgeneratorBundle_edit_category', {'id': cv.id, 'cat_id': cat.id}) }}" class="edit add_category">
-            <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
-          </a>
-        </div>
+
+  <div id="resume">
+    {% if cv.isTitleDisplayed == 1 %}
+      <h1 id="cv_title">
+        {{ cv }}
+        {% if (is_admin == true) and ((pdf is not defined) or (pdf != true)) %}
+          <span class="admin">
+            <a href="{{ path('Bacardi55CvgeneratorBundle_edit_cv', { 'id': cv.id }) }}">
+              <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+            </a>
+          </span>
+        {% endif %}
       </h1>
-      {% for sub_cat in cat.childrenCategories %}
-        <h2>{{ sub_cat.title }}
-        <span class="admin">
-          <a class="delete" href="{{ path('Bacardi55CvgeneratorBundle_del_category', {'id': cv.id, 'cat_id': sub_cat.id}) }}">
-            <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
-          </a>
-          <a href="{{ path('Bacardi55CvgeneratorBundle_edit_subcategory', {'id': cv.id, 'p_cat_id': cat.id, 'sub_cat_id': sub_cat.id}) }}" class="add_category edit">
-            <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
-          </a>
-        </div>
-        </h2>
-        <ul class="sub_elements">
-          {% for sub_element in sub_cat.elements %}
-            <li class="sub_element">
-              {% if sub_element.title %}
-                <span class="sub_element_left title">
-                  {{ sub_element.title }}
-                </span>
-              {% else %}
-                <span class="sub_element_left date">
-                  {% if sub_element.endDate is not null %}
-                    <span class="sub_element_start">
-                      {{ sub_element.startDate.format('M Y') }}
-                    </span>
-                    -
-                    <span class="sub_element_end">
-                      {{ sub_element.endDate.format('M Y') }}
-                    </span>
-                  {% else %}
-                    <span class="sub_element_date">
-                      Since {{ sub_element.startDate.format('M Y') }}
-                    </span>
-                  {% endif %}
+    {% else %}
+      {# TODO #}
+    {% endif %}
+    <div id="categories">
+      {% for cat in cv.categories %}
+        <div class="category">
+          {% if cat.parentCategory.id is not defined %}
+            <input type="hidden" value="{{ cat.id }}" />
+            <h1>{{ cat.title }}
+              {% if (is_admin == true) and ((pdf is not defined) or (pdf != true)) %}
+                <span class="admin">
+                  <a class="delete" href="{{ path('Bacardi55CvgeneratorBundle_del_category', {'id': cv.id, 'cat_id': cat.id}) }}">
+                    <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
+                  </a>
+                  <a href="{{ path('Bacardi55CvgeneratorBundle_edit_category', {'id': cv.id, 'cat_id': cat.id}) }}" class="edit add_category">
+                    <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+                  </a>
                 </span>
               {% endif %}
-              <span class="sub_element_text">
-                {{ sub_element.text | raw }}
-              </span>
-              <span class="admin">
-                <a href="{{ path('Bacardi55CvgeneratorBundle_del_element', {'id': cv.id, 'cat_id': sub_cat.id, 'element_id': sub_element.id }) }}" class="delete">
-                  <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
-                </a>
-                <a href="{{ path('Bacardi55CvgeneratorBundle_edit_element', {'id': cv.id, 'cat_id': sub_cat.id, 'element_id': sub_element.id }) }}" class="edit add_line">
-                  <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
-                </a>
-              </div>
-            </li>
-          {% endfor %}
-          <li class="sub_element">
-            <a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': sub_cat.id}) }}" class="add_line">
-              + {% trans %}element.new{% endtrans %}
-            </a>
-          </li>
-        </ul>
+            </h1>
+            {% for sub_cat in cat.childrenCategories %}
+              <div class="subcategory">
+                <h2>{{ sub_cat.title }}
+                  {% if (is_admin == true) and ((pdf is not defined) or (pdf != true)) %}
+                    <span class="admin">
+                      <a class="delete" href="{{ path('Bacardi55CvgeneratorBundle_del_category', {'id': cv.id, 'cat_id': sub_cat.id}) }}">
+                        <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
+                      </a>
+                      <a href="{{ path('Bacardi55CvgeneratorBundle_edit_subcategory', {'id': cv.id, 'p_cat_id': cat.id, 'sub_cat_id': sub_cat.id}) }}" class="add_category edit">
+                        <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+                      </a>
+                    </span>
+                  {% endif %}
+                </h2>
+                <ul class="sub_elements">
+                  {% for sub_element in sub_cat.elements %}
+                    <li class="sub_element">
+                      {% if sub_element.title %}
+                        <span class="sub_element_left title">
+                          {{ sub_element.title }}
+                        </span>
+                      {% else %}
+                        <span class="sub_element_left date">
+                          {% if sub_element.endDate is not null %}
+                            <span class="sub_element_start">
+                              {{ sub_element.startDate.format('M Y') }}
+                            </span>
+                            -
+                            <span class="sub_element_end">
+                              {{ sub_element.endDate.format('M Y') }}
+                            </span>
+                          {% else %}
+                            <span class="sub_element_date">
+                              Since {{ sub_element.startDate.format('M Y') }}
+                            </span>
+                          {% endif %}
+                        </span>
+                      {% endif %}
+                      <span class="sub_element_text">
+                        {{ sub_element.text | raw }}
+                      </span>
+                      <span class="admin">
+                        <a href="{{ path('Bacardi55CvgeneratorBundle_del_element', {'id': cv.id, 'cat_id': sub_cat.id, 'element_id': sub_element.id }) }}" class="delete">
+                          <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
+                        </a>
+                        <a href="{{ path('Bacardi55CvgeneratorBundle_edit_element', {'id': cv.id, 'cat_id': sub_cat.id, 'element_id': sub_element.id }) }}" class="edit add_line">
+                          <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+                        </a>
+                      </span>
+                    </li>
+                  {% endfor %}
+                </div> {# class subcategory #}
+                <li class="sub_element">
+                  <a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': sub_cat.id}) }}" class="add_line">
+                    + {% trans %}element.new{% endtrans %}
+                  </a>
+                </li>
+              </ul>
+            {% endfor %}
+            <ul class="elements">
+              {% for element in cat.elements %}
+                <li class="element" >
+                  {% if element.title %}
+                    <span class="element_left title">
+                      {{ element.title }}
+                    </span>
+                  {% else %}
+                    <span class="element_left date">
+                      {% if element.endDate is not null %}
+                        <span class="element_start">
+                          {{ element.startDate.format('M Y') }}
+                        </span>
+                        -
+                        <span class="element_end">
+                          {{ element.endDate.format('M Y') }}
+                        </span>
+                      {% else %}
+                        <span class="element_date">
+                          Since {{ element.startDate.format('M Y') }}
+                        </span>
+                      {% endif %}
+                    </span>
+                  {% endif %}
+                  <span class="element_right">{{ element.text }}</span>
+
+                  {% if (is_admin == true) and ((pdf is not defined) or (pdf != true)) %}
+                    <span class="admin">
+                      <a href="{{ path('Bacardi55CvgeneratorBundle_del_element', {'id': cv.id, 'cat_id': cat.id, 'element_id': element.id}) }}" class="delete">
+                        <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
+                      </a>
+                      <a href="{{ path('Bacardi55CvgeneratorBundle_edit_element', {'id': cv.id, 'cat_id': cat.id, 'element_id': element.id}) }}" class="edit add_line">
+                        <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
+                      </a>
+                    </span>
+                  {% endif %}
+                </li>
+              {% endfor %}
+              <br/>
+              {% if (is_admin == true) and ((pdf is not defined) or (pdf != true)) %}
+                <span class = "admin">
+                  <a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': cat.id}) }}" class="add_line">
+                    + {% trans %}element.new{% endtrans %}
+                  </a>
+                  <br/>
+                  <a href="{{ path('Bacardi55CvgeneratorBundle_add_subcategory', {'id': cv.id, 'p_cat_id': cat.id}) }}" class="add_category">
+                    + {% trans %}category.sub.new{% endtrans %}
+                  </a>
+                </span>
+              {% endif %}
+            </ul>
+          {% endif %}
+        </div> {# class category #}
+      {% else %}
+        No Category yet
       {% endfor %}
-      <ul class="elements">
-        {% for element in cat.elements %}
-          <li class="element" >
-            {% if element.title %}
-              <span class="element_left title">
-                {{ element.title }}
-              </span>
-            {% else %}
-              <span class="element_left date">
-                {% if element.endDate is not null %}
-                  <span class="element_start">
-                    {{ element.startDate.format('M Y') }}
-                  </span>
-                  -
-                  <span class="element_end">
-                    {{ element.endDate.format('M Y') }}
-                  </span>
-                {% else %}
-                  <span class="element_date">
-                    Since {{ element.startDate.format('M Y') }}
-                  </span>
-                {% endif %}
-              </span>
-            {% endif %}
-            <span class="element_right">{{ element.text }}</span>
-            <span class="admin">
-              <a href="{{ path('Bacardi55CvgeneratorBundle_del_element', {'id': cv.id, 'cat_id': cat.id, 'element_id': element.id}) }}" class="delete">
-                <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
-              </a>
-              <a href="{{ path('Bacardi55CvgeneratorBundle_edit_element', {'id': cv.id, 'cat_id': cat.id, 'element_id': element.id}) }}" class="edit add_line">
-                <img src="{{ asset('/bundles/bacardi55cvgenerator/images/edit.png') }}" alt="edit" />
-              </a>
-            </div>
-          </li>
-        {% endfor %}
-        <br/>
-        <a href="{{ path('Bacardi55CvgeneratorBundle_add_element', {'id': cv.id, 'cat_id': cat.id}) }}" class="add_line">
-          + {% trans %}element.new{% endtrans %}
-        </a>
-        <br/>
-        <a href="{{ path('Bacardi55CvgeneratorBundle_add_subcategory', {'id': cv.id, 'p_cat_id': cat.id}) }}" class="add_category">
-          + {% trans %}category.sub.new{% endtrans %}
-        </a>
-      </ul>
-    {% endif %}
-  {% else %}
-    No Category yet
-  {% endfor %}
+    </div> {# id categories #}
 
-  <div class="admin">
-    <a href="{{ path('Bacardi55CvgeneratorBundle_add_category', { 'id': cv.id }) }}" class="add_category">
-      + {% trans %}category.new{% endtrans %}
-    </a><br />
-    <a href="{{ path('Bacardi55CvgeneratorBundle_delete', { 'id': cv.id }) }}">
-      <img src="{{ asset('/bundles/bacardi55cvgenerator/images/delete.png') }}" alt="delete" />
-      {% trans %}cv.delete{% endtrans %}
-    </a><br />
-    <a href="{{ path('Bacardi55CvgeneratorBundle_homepage') }}">{% trans %}cv.list{% endtrans %}</a><br />
-  </div>
+  </div> {# id resume #}
 
-<div id="ajax_add"></div>
+
+  {% if (is_admin == true) and ((pdf is not defined) or (pdf != true)) %}
+    <form id = "reorderForm" action="{{ path('Bacardi55CvgeneratorBundle_reorder', {'id' : cv.id}) }}" method="post" {{ form_enctype(form) }}>
+      {{ form_widget(form) }}
+    </form>
+  {% endif %}
+
+
+  <div id="ajax_add"></div>
 
 {% endblock %}
 
 {% block javascripts %}
-  <script src="{{ asset('bundles/bacardi55cvgenerator/js/jquery/jquery.min.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('bundles/bacardi55cvgenerator/js/jquery/jquery-ui.min.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('bundles/bacardi55cvgenerator/js/cvgenerator.js') }}" type="text/javascript"></script>
+  {% if (is_admin == true) or (pdf is not defined) or (pdf != true) %}
+    <script src="{{ asset('bundles/bacardi55cvgenerator/js/jquery/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/bacardi55cvgenerator/js/jquery/jquery-ui.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/bacardi55cvgenerator/js/cvgenerator.js') }}" type="text/javascript"></script>
 
-  <script type="text/javascript" src="{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/tiny_mce.js') }}"></script>
-  <script type="text/javascript">
-    tinyMCE.init({
-      // General options
-      mode : "textareas",
-      theme : "simple",
-      plugins : "",
+    <script type="text/javascript" src="{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/tiny_mce.js') }}"></script>
+    <script type="text/javascript">
+      tinyMCE.init({
+        // General options
+        mode : "textareas",
+        theme : "simple",
+        plugins : "",
 
-      // Theme options
-      theme_advanced_buttons1 : "bold,italic,underline,strikethrough",
-      theme_advanced_toolbar_location : "top",
-      theme_advanced_toolbar_align : "center",
-      theme_advanced_statusbar_location : "top",
-      theme_advanced_resizing : true,
+        // Theme options
+        theme_advanced_buttons1 : "bold,italic,underline,strikethrough",
+        theme_advanced_toolbar_location : "top",
+        theme_advanced_toolbar_align : "center",
+        theme_advanced_statusbar_location : "top",
+        theme_advanced_resizing : true,
 
-      // Drop lists for link/image/media/template dialogs
-      template_external_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/template_list.js') }}", 
-      external_link_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/link_list.js') }}",
-      external_image_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/image_list.js') }}",
-      media_external_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/media_list.js') }}",
-  });
-  </script>
+        // Drop lists for link/image/media/template dialogs
+        template_external_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/template_list.js') }}",
+        external_link_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/link_list.js') }}",
+        external_image_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/image_list.js') }}",
+        media_external_list_url : "{{ asset('bundles/bacardi55cvgenerator/js/tiny_mce/media_list.js') }}",
+    });
+    </script>
 
+  {% endif %}
 {% endblock %}

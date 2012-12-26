@@ -114,3 +114,12 @@ span.element_left.date > span.element_end{
 
 span.element_droite{
 }
+
+div.navigation {
+  display: inline;
+}
+
+div#header {
+  width:100%;
+  border-bottom: 1px solid black;
+}

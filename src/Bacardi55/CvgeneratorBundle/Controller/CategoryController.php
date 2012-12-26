@@ -42,6 +42,8 @@ class CategoryController extends Controller{
 
       /* Si le formulaire est valide, on valide et on redirige vers la liste des genres */
       if($form->isValid()){
+        // Add default weight (add category in last)
+        $category->setWeight(count($cv->getCategories()));
         $em->persist($category);
         $em->flush();
 

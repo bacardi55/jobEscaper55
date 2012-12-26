@@ -1,4 +1,5 @@
 cv:
+  no_cv: "No resume"
   titre: "Resume title: "
   afficher: "Display this title on top of your resume? "
   list: List of resume

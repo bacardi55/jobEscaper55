@@ -30,6 +30,11 @@ class Category{
   private $cv;
   
   /**
+   * @ORM\Column(type="integer")
+   */
+  private $weight;
+
+  /**
    * @ORM\OneToMany(targetEntity="Element", mappedBy="category")
    */
   private $elements;
@@ -54,114 +59,153 @@ class Category{
     return $this->title;
   }
       
+  /**
+   * Get id
+   *
+   * @return integer 
+   */
+  public function getId()
+  {
+      return $this->id;
+  }
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+  /**
+   * Set title
+   *
+   * @param string $title
+   */
+  public function setTitle($title)
+  {
+      $this->title = $title;
+  }
 
-    /**
-     * Set title
-     *
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
+  /**
+   * Get title
+   *
+   * @return string 
+   */
+  public function getTitle()
+  {
+      return $this->title;
+  }
 
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
+  /**
+   * Set cv
+   *
+   * @param Bacardi55\CvgeneratorBundle\Entity\Cv $cv
+   */
+  public function setCv(\Bacardi55\CvgeneratorBundle\Entity\Cv $cv)
+  {
+      $this->cv = $cv;
+  }
 
-    /**
-     * Set cv
-     *
-     * @param Bacardi55\CvgeneratorBundle\Entity\Cv $cv
-     */
-    public function setCv(\Bacardi55\CvgeneratorBundle\Entity\Cv $cv)
-    {
-        $this->cv = $cv;
-    }
+  /**
+   * Get cv
+   *
+   * @return Bacardi55\CvgeneratorBundle\Entity\Cv 
+   */
+  public function getCv()
+  {
+      return $this->cv;
+  }
 
-    /**
-     * Get cv
-     *
-     * @return Bacardi55\CvgeneratorBundle\Entity\Cv 
-     */
-    public function getCv()
-    {
-        return $this->cv;
-    }
+  /**
+   * Add elements
+   *
+   * @param Bacardi55\CvgeneratorBundle\Entity\Element $elements
+   */
+  public function addElements(\Bacardi55\CvgeneratorBundle\Entity\Element $elements)
+  {
+      $this->elements[] = $elements;
+  }
 
-    /**
-     * Add elements
-     *
-     * @param Bacardi55\CvgeneratorBundle\Entity\Element $elements
-     */
-    public function addElements(\Bacardi55\CvgeneratorBundle\Entity\Element $elements)
-    {
-        $this->elements[] = $elements;
-    }
+  /**
+   * Get elements
+   *
+   * @return Doctrine\Common\Collections\Collection 
+   */
+  public function getElements()
+  {
+      return $this->elements;
+  }
 
-    /**
-     * Get elements
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getElements()
-    {
-        return $this->elements;
-    }
+  /**
+   * Add childrenCategories
+   *
+   * @param Bacardi55\CvgeneratorBundle\Entity\Category $childrenCategories
+   */
+  public function addChildrenCategories(\Bacardi55\CvgeneratorBundle\Entity\Category $childrenCategories)
+  {
+      $this->childrenCategories[] = $childrenCategories;
+  }
 
-    /**
-     * Add childrenCategories
-     *
-     * @param Bacardi55\CvgeneratorBundle\Entity\Category $childrenCategories
-     */
-    public function addChildrenCategories(\Bacardi55\CvgeneratorBundle\Entity\Category $childrenCategories)
-    {
-        $this->childrenCategories[] = $childrenCategories;
-    }
+  /**
+   * Get childrenCategories
+   *
+   * @return Doctrine\Common\Collections\Collection 
+   */
+  public function getChildrenCategories()
+  {
+      return $this->childrenCategories;
+  }
 
-    /**
-     * Get childrenCategories
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getChildrenCategories()
-    {
-        return $this->childrenCategories;
-    }
+  /**
+   * Set parentCategory
+   *
+   * @param Bacardi55\CvgeneratorBundle\Entity\Category $parentCategory
+   */
+  public function setParentCategory(\Bacardi55\CvgeneratorBundle\Entity\Category $parentCategory)
+  {
+      $this->parentCategory = $parentCategory;
+  }
 
-    /**
-     * Set parentCategory
-     *
-     * @param Bacardi55\CvgeneratorBundle\Entity\Category $parentCategory
-     */
-    public function setParentCategory(\Bacardi55\CvgeneratorBundle\Entity\Category $parentCategory)
-    {
-        $this->parentCategory = $parentCategory;
-    }
+  /**
+   * Get parentCategory
+   *
+   * @return Bacardi55\CvgeneratorBundle\Entity\Category 
+   */
+  public function getParentCategory()
+  {
+      return $this->parentCategory;
+  }
 
-    /**
-     * Get parentCategory
-     *
-     * @return Bacardi55\CvgeneratorBundle\Entity\Category 
-     */
-    public function getParentCategory()
-    {
-        return $this->parentCategory;
-    }
+  /**
+   * Set weight
+   *
+   * @param integer $weight
+   */
+  public function setWeight($weight)
+  {
+      $this->weight = $weight;
+  }
+
+  /**
+   * Get weight
+   *
+   * @return integer 
+   */
+  public function getWeight()
+  {
+      return $this->weight;
+  }
+
+  /**
+   * Add elements
+   *
+   * @param Bacardi55\CvgeneratorBundle\Entity\Element $elements
+   */
+  public function addElement(\Bacardi55\CvgeneratorBundle\Entity\Element $elements)
+  {
+      $this->elements[] = $elements;
+  }
+
+  /**
+   * Add childrenCategories
+   *
+   * @param Bacardi55\CvgeneratorBundle\Entity\Category $childrenCategories
+   */
+  public function addCategory(\Bacardi55\CvgeneratorBundle\Entity\Category $childrenCategories)
+  {
+      $this->childrenCategories[] = $childrenCategories;
+  }
 }

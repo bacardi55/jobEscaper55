@@ -44,117 +44,142 @@ class Element{
    */
   protected $text;
 
+  /**
+   * @ORM\Column(type="integer")
+   */
+  protected $weight;
+
   public function __toString(){
     return $this->text;
   }
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+  /**
+   * Get id
+   *
+   * @return integer 
+   */
+  public function getId()
+  {
+      return $this->id;
+  }
 
-    /**
-     * Set category
-     *
-     * @param Bacardi55\CvgeneratorBundle\Entity\Category $category
-     */
-    public function setCategory(\Bacardi55\CvgeneratorBundle\Entity\Category $category)
-    {
-        $this->category = $category;
-    }
+  /**
+   * Set category
+   *
+   * @param Bacardi55\CvgeneratorBundle\Entity\Category $category
+   */
+  public function setCategory(\Bacardi55\CvgeneratorBundle\Entity\Category $category)
+  {
+      $this->category = $category;
+  }
 
-    /**
-     * Get category
-     *
-     * @return Bacardi55\CvgeneratorBundle\Entity\Category 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
+  /**
+   * Get category
+   *
+   * @return Bacardi55\CvgeneratorBundle\Entity\Category 
+   */
+  public function getCategory()
+  {
+      return $this->category;
+  }
 
-    /**
-     * Set title
-     *
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
+  /**
+   * Set title
+   *
+   * @param string $title
+   */
+  public function setTitle($title)
+  {
+      $this->title = $title;
+  }
 
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
+  /**
+   * Get title
+   *
+   * @return string 
+   */
+  public function getTitle()
+  {
+      return $this->title;
+  }
 
-    /**
-     * Set startDate
-     *
-     * @param date $startDate
-     */
-    public function setStartDate($startDate)
-    {
-        $this->startDate = $startDate;
-    }
+  /**
+   * Set startDate
+   *
+   * @param date $startDate
+   */
+  public function setStartDate($startDate)
+  {
+      $this->startDate = $startDate;
+  }
 
-    /**
-     * Get startDate
-     *
-     * @return date 
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
+  /**
+   * Get startDate
+   *
+   * @return date 
+   */
+  public function getStartDate()
+  {
+      return $this->startDate;
+  }
 
-    /**
-     * Set endDate
-     *
-     * @param date $endDate
-     */
-    public function setEndDate($endDate)
-    {
-        $this->endDate = $endDate;
-    }
+  /**
+   * Set endDate
+   *
+   * @param date $endDate
+   */
+  public function setEndDate($endDate)
+  {
+      $this->endDate = $endDate;
+  }
 
-    /**
-     * Get endDate
-     *
-     * @return date 
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
+  /**
+   * Get endDate
+   *
+   * @return date 
+   */
+  public function getEndDate()
+  {
+      return $this->endDate;
+  }
 
-    /**
-     * Set text
-     *
-     * @param text $text
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-    }
+  /**
+   * Set text
+   *
+   * @param text $text
+   */
+  public function setText($text)
+  {
+      $this->text = $text;
+  }
 
-    /**
-     * Get text
-     *
-     * @return text 
-     */
-    public function getText()
-    {
-        return $this->text;
-    }
+  /**
+   * Get text
+   *
+   * @return text 
+   */
+  public function getText()
+  {
+      return $this->text;
+  }
+
+  /**
+   * Set weight
+   *
+   * @param integer $weight
+   */
+  public function setWeight($weight)
+  {
+      $this->weight = $weight;
+  }
+
+  /**
+   * Get weight
+   *
+   * @return integer 
+   */
+  public function getWeight()
+  {
+      return $this->weight;
+  }
 }

@@ -58,3 +58,18 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb',  'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Bacardi55\UserBundle\Entity\User
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     %kernel.root_dir%/../src/Bacardi55/CvgeneratorBundle/Util/wkhtmltopdf.sh
+        options:    []
+#    image:
+#        enabled:    true
+#        binary:     /usr/bin/wkhtmltoimage
+#        options:    []
