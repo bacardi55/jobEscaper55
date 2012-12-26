@@ -1,0 +1,7 @@
+parameters:
+#    bacardi55_user.example.class: Bacardi55\UserBundle\Example
+
+services:
+#    bacardi55_user.example:
+#        class: %bacardi55_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,17 @@
+#admin {
+  display:inline;
+}
+
+#admin #adminToggle {
+  display:inline;
+  padding-right: 25px;
+}
+
+#admin_items {
+  display: inline;
+} 
+
+.sortable {
+  background: url("../images/arrow.gif") no-repeat scroll 0 7px;
+  padding-left: 20px;
+}

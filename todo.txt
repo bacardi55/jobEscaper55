@@ -1,0 +1,29 @@
+DOCS :
+  Install docs
+  need : wkhtmltopdf (+ xvfb on debian)
+
+
+IDEA :
+
+- weight
+  → Sortable (jquery)
+  → Ajax
+  → Display
+  → Load JS when user has right
+  → Load admin CSS when user has right
+
+- User
+  → FOS User Bundle
+  →→→
+
+- design
+  → Date picker
+
+- pdf
+
+- Sortable :
+  - cat
+  - sub cat
+  - element
+
+- email
